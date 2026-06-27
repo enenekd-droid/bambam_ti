@@ -32,7 +32,8 @@ body {
 }
 
 button,
-input {
+input,
+textarea {
   font: inherit;
 }
 
@@ -469,6 +470,99 @@ button {
   color: #ff0000;
   font-size: 24px;
   text-shadow: 2px 2px 0 #fff200;
+}
+
+.counseling-panel {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.counseling-selected,
+.preview-block,
+.counseling-result {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 14px;
+}
+
+.counseling-selected p,
+.counseling-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.selected-grid {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.selected-grid p {
+  margin: 0;
+}
+
+.selected-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.counseling-label {
+  font-weight: 800;
+}
+
+.counseling-textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--ink);
+  outline: none;
+  padding: 12px 14px;
+  line-height: 1.6;
+}
+
+.counseling-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.13);
+}
+
+.preview-block {
+  background: #f8fafc;
+}
+
+.preview-block pre {
+  overflow: auto;
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.counseling-result {
+  min-height: 80px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.counseling-note {
+  font-size: 14px;
+}
+
+.counseling-select-button {
+  width: 100%;
+  margin: 12px 0 0;
 }
 
 .compact-table {
