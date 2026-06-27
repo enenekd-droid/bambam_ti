@@ -1,4 +1,4 @@
-const GEMINI_MODEL = "gemini-2.5-pro";
+const GEMINI_MODEL = "Gemini 3.1 Flash Lite";
 const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 module.exports = async function handler(req, res) {

@@ -114,6 +114,26 @@ logoutButton.addEventListener("click", () => {
   userIdInput.focus();
 });
 
+adminView.addEventListener("click", (event) => {
+  const selectButton = event.target.closest(".counseling-select-button");
+  if (selectButton) {
+    selectedCounselingStudent = STUDENTS.find((student) => student.id === selectButton.dataset.studentId);
+    updateCounselingPanel();
+    document.querySelector("#counselingPanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  if (event.target.closest("#requestCounselingButton")) {
+    requestCounselingStrategy();
+  }
+});
+
+adminView.addEventListener("input", (event) => {
+  if (event.target.matches("#teacherConcern")) {
+    updateCounselingPreview();
+  }
+});
+
 function showOnly(targetView) {
   [loginView, studentView, adminView].forEach((view) => view.classList.add("hidden"));
   targetView.classList.remove("hidden");
@@ -177,7 +197,6 @@ function renderAdminDashboard() {
     </section>
   `;
 
-  bindCounselingEvents();
   showOnly(adminView);
   logoutButton.classList.remove("hidden");
 }
@@ -201,7 +220,7 @@ function renderStudentCard(student) {
 
 function renderCounselingPanel() {
   return `
-    <section class="counseling-panel" aria-labelledby="counselingTitle">
+    <section id="counselingPanel" class="counseling-panel" aria-labelledby="counselingTitle">
       <div class="section-title">
         <div>
           <p class="eyebrow">Gemini Assistant</p>
@@ -238,22 +257,12 @@ function renderCounselingPanel() {
   `;
 }
 
-function bindCounselingEvents() {
-  document.querySelectorAll(".counseling-select-button").forEach((button) => {
-    button.addEventListener("click", () => {
-      selectedCounselingStudent = STUDENTS.find((student) => student.id === button.dataset.studentId);
-      updateCounselingPanel();
-    });
-  });
-
-  document.querySelector("#teacherConcern").addEventListener("input", updateCounselingPreview);
-  document.querySelector("#requestCounselingButton").addEventListener("click", requestCounselingStrategy);
-}
-
 function updateCounselingPanel() {
   const selectedArea = document.querySelector("#counselingSelected");
   const resultArea = document.querySelector("#counselingResult");
   const errorArea = document.querySelector("#counselingError");
+
+  if (!selectedArea) return;
 
   if (!selectedCounselingStudent) {
     selectedArea.innerHTML = `
